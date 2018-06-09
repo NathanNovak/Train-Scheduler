@@ -1,7 +1,24 @@
 .schedule-table{
     width: 100%;
+    margin-top: 3em;
+    font-family: 'Open Sans', sans-serif;
 }
 .card-header{
-    background-color: blue;
+    background-color: brown;
     color: aliceblue;
+    text-align: center;
+}
+.header{
+    padding: 75px;
+    font-size: 60px;
+    float: left;
+    font-family: 'Abril Fatface', cursive;
+
+}
+#page-header{
+    background-image: url("assets/images/train-clock.jpg"); 
+    object-fit: contain;
+    color: rgb(236, 19, 66);
+    
+
 }
