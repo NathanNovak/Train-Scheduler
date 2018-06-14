@@ -17,6 +17,7 @@
   var nextArrival = "";
   var minutesAway = "";
   var firstTime = "";
+  var getMinutes = 0;
 
   database.ref();
 
@@ -62,12 +63,36 @@
     console.log(cs.firstTime);
     console.log(cs.frequency);
 
-    nextArrival = "soon";
-    minutesAway = "soon";
+    //subtracts 1 year to give more accurate timing in the past
+    var firstTimeConverted = moment(firstTime, "HH:mm a").subtract(1, "year"); 
 
-    var scheduleInput = "<tr><td>" + train + "</td><td>" + destination + "</td><td>" + frequency +"</td><td>" + nextArrival + "</td><td>" + minutesAway + "</td>";
+    //gets the current time
+    var currentTime = moment()
+    console.log(currentTime);
+
+    var diffInMinutes = moment().diff(firstTimeConverted, "minutes");
+    console.log(diffInMinutes);
+
+    // gets remainder from the minutes over a year to current time.  
+    var tRemainder = diffInMinutes % frequency;
+    console.log(tRemainder);
+
+    getMinutes = moment().get('minute');
+
+    minutesAway = frequency - tRemainder;
+
+    nextArrival = moment().add(minutesAway, 'minute');
+
+    var timeTill = moment(nextArrival).format('hh:mm a');    
+    console.log(nextArrival);
+
+  
+
+    var scheduleInput = "<tr><td>" + train + "</td><td>" + destination + "</td><td>Every " + frequency +" min</td><td>" + timeTill + "</td><td>" + minutesAway + " min</td>";
 
     $('#trainSchedule > tbody').append(scheduleInput);
+
+
 
   }), function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
