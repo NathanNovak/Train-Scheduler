@@ -16,9 +16,9 @@
 
 }
 #page-header{
-    background-image: url("assets/images/train-clock.jpg"); 
+    background-image: url("../images/train-clock.jpg"); 
     object-fit: contain;
-    color: rgb(236, 19, 66);
+    color: rgb(235, 19, 66);
     
 
 }
